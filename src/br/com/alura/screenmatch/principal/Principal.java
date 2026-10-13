@@ -1,20 +1,20 @@
+package br.com.alura.screenmatch.principal;
+
 import br.com.alura.screenmatch.modelos.Episodio;
 import br.com.alura.screenmatch.modelos.Filme;
 import br.com.alura.screenmatch.modelos.Serie;
 import br.com.alura.sreenmatch.calculo.CalculadoraDeTempo;
 import br.com.alura.sreenmatch.calculo.FiltroRecomendacao;
 
+import java.util.ArrayList;
+
 public class Principal {
     public static void main(String[] args) {
-        Filme outroFilme = new Filme();
-        outroFilme.setNome("Avatar");
-        outroFilme.setAnoDeLancamento(2023);
+        Filme outroFilme = new Filme("Avatar", 2023);
         outroFilme.setDuracaoEmMinutos(200);
         System.out.println("Duração do filme: " + outroFilme.getDuracaoEmMinutos());
 
-        Filme meuFilme = new Filme();
-        meuFilme.setNome("Poderoso Chefão");
-        meuFilme.setAnoDeLancamento(2023);
+        Filme meuFilme = new Filme("Poderoso Chefão", 2023);
         meuFilme.setDuracaoEmMinutos(280);
 
         meuFilme.exibeFichaTecnica();
@@ -24,9 +24,7 @@ public class Principal {
         System.out.println("Total de avaliações: " + meuFilme.getTotalDeAvaliacoes());
         System.out.println(meuFilme.pegaMedia());
 
-        Serie lost = new Serie();
-        lost.setNome("Lost");
-        lost.setAnoDeLancamento(2000);
+        Serie lost = new Serie("Lost", 2000);
         lost.exibeFichaTecnica();
         lost.setTemporadas(10);
         lost.setEpisodiosPorTemporada(10);
@@ -48,5 +46,22 @@ public class Principal {
         episodio.setSerie(lost);
         episodio.setTotalVisualizacoes(300);
         filtro.filtra(episodio);
+
+        //var - faz uma inferência do tipo da Classe
+        var filmeDoPaulo = new Filme("Dogville", 2003);
+        filmeDoPaulo.setDuracaoEmMinutos(200);
+        filmeDoPaulo.avalia(10);
+
+        ArrayList<Filme> listaDeFilmes = new ArrayList<>();
+        listaDeFilmes.add(filmeDoPaulo);
+        listaDeFilmes.add(meuFilme);
+        listaDeFilmes.add(outroFilme);
+        System.out.println("Tamanho da lista: " + listaDeFilmes.size());
+        System.out.println("Primeiro filme " + listaDeFilmes.get(0).getNome());
+        System.out.println(listaDeFilmes);
+        System.out.println("toString do filme " + listaDeFilmes.get(0).toString());
+
+
+
     }
 }
